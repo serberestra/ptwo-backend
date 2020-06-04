@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Objects;
 
 @Entity
 public class Worker {
@@ -22,16 +21,16 @@ public class Worker {
 	@Column(name = "company_id", unique=true, nullable = false)
 	private Long companyId;
 
-	private String serviceName;
+	private String service;
 
 	public Worker() {
 	}
 
-	public Worker(String firstName, String lastName, Long companyId, String service_name) {
+	public Worker(String firstName, String lastName, Long companyId, String service) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.companyId = companyId;
-		this.serviceName = serviceName;
+		this.service = service;
 	}
 
 	public Long getId() {
@@ -66,12 +65,12 @@ public class Worker {
 		this.companyId = companyId;
 	}
 
-	public String getServiceName() {
-		return serviceName;
+	public String getService() {
+		return service;
 	}
 
-	public void setServiceName(String serviceName) {
-		this.serviceName = serviceName;
+	public void setService(String service) {
+		this.service = service;
 	}
 
 	@Override
@@ -81,25 +80,7 @@ public class Worker {
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", companyId=" + companyId +
-				", serviceName='" + serviceName + '\'' +
+				", service='" + service + '\'' +
 				'}';
-	}
-
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Worker worker = (Worker) o;
-		return getId().equals(worker.getId()) &&
-				getFirstName().equals(worker.getFirstName()) &&
-				getLastName().equals(worker.getLastName()) &&
-				getCompanyId().equals(worker.getCompanyId()) &&
-				getServiceName().equals(worker.getServiceName());
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(getId(), getFirstName(), getLastName(), getCompanyId(), getServiceName());
 	}
 }

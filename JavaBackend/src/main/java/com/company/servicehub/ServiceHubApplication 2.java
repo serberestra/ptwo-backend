@@ -29,7 +29,7 @@ public class ServiceHubApplication implements CommandLineRunner{
 	@Override
 	public void run(String... arg0) throws Exception {
 		Worker worker = repository.findById(1001L);
-		Company company = companyRepository.getCompany(5001L);
+		Company company = companyRepository.findById(5001L);
 
 		logger.info("Worker 1001 -> {}", worker);
 		logger.info("Company 5001 -> {}",  company);
