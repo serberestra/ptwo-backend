@@ -49,7 +49,11 @@ public class CompanyController {
 
     }
 
-
+    @DeleteMapping(path="/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCompany(@PathVariable Long id){
+        companyDao.deleteCompany(id);
+    }
 
     // on handling dates:
     // @RequestMapping(value="/fetch" , method=RequestMethod.GET)

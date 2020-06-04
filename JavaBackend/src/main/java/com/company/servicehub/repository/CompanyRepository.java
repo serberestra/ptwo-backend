@@ -58,8 +58,10 @@ public class CompanyRepository implements CompanyDao{
 	}
 
 	@Override
+	@Transactional
 	public void deleteCompany(Long id) {
-
+		Company fromDb = em.find(Company.class, id);
+		em.remove(fromDb);
 	}
 
 }
