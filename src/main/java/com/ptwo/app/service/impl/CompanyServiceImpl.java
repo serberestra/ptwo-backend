@@ -1,8 +1,10 @@
 package com.ptwo.app.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.ptwo.app.dao.CompanyDao;
@@ -41,9 +43,13 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
-	public Company getCompanyById(Long id) {
-		// TODO Auto-generated method stub
-		return companyDao.findById(id).get();
+	public Company getCompanyById(Long id) {	
+		try {
+            return companyDao.findById(id).get();
+        } catch (EmptyResultDataAccessException e) {
+            // if there is no Company with this id, just return null
+            return null;
+        }
 	}
 
 

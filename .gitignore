@@ -4,6 +4,8 @@ bin/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+src/main/java/com/ptwo/app/PtwoBackendApplication.java
+application.properties
 
 ### STS ###
 .apt_generated
