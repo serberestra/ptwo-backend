@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table
+@Table(name="sh_worker")
 public class Worker {
 
 	@Id
@@ -30,12 +30,16 @@ public class Worker {
 	public Worker() {
 	}
 
-	public Worker(String firstName, String lastName, Long companyId, String serviceName) {
+	public Worker(Long id, String firstName, String lastName, Long companyId, String serviceName) {
+		super();
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.companyId = companyId;
 		this.serviceName = serviceName;
 	}
+
+
 
 	public Long getId() {
 		return id;

@@ -6,5 +6,8 @@ import com.ptwo.app.model.User;
 
 @Repository
 public interface UserDAO extends JpaRepository<User, Long>{
-	public User findByUsername(String Username);
+	
+	public User findByUsername(String username);
+	public User findUserByUsernameAndPassword(String username, String password);
+	
 }

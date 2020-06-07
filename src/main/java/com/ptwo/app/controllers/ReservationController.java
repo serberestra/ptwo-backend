@@ -18,7 +18,7 @@ import com.ptwo.app.service.ReservationService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/res")
+@RequestMapping("/api/reservation")
 public class ReservationController {
 
 	@Autowired

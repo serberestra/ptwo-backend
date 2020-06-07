@@ -17,7 +17,7 @@ import com.ptwo.app.service.UserService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
 	@Autowired
@@ -39,17 +39,17 @@ public class UserController {
 		
 	}
 	
-	@GetMapping("/users/{id}")
+	@GetMapping("/{id}")
 	public User getUserById(@PathVariable("id")Long id) {
 		return service.getUserById(id);
 	}
 	
-	@GetMapping("/users")
+	@GetMapping("/all")
 	public List<User> getAllUsers() {
 		return service.getAllUsers();
 	}
 
-	@GetMapping("/users/name/{username}")
+	@GetMapping("/name/{username}")
 	public User getUserByName(@PathVariable("username")String Username) {
 		return service.getUserByName(Username);
 	}

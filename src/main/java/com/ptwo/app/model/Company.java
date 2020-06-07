@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table
+@Table(name="sh_company")
 public class Company {
 
     @Id
@@ -31,13 +31,16 @@ public class Company {
     protected Company() {
     }
 
-    public Company(String name, String phone) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-    }
+    
+    public Company(Long id, String name, String phoneNumber, String address) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+	}
 
-
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 

@@ -1,5 +1,6 @@
 package com.ptwo.app.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,16 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="sh_user")
 public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	Long id;
-	String username;
-	String password;
-	String userType;
-	String phoneNumber;
+	private Long id;
+	private String username;
+	private String password;
+	@Column(name="user_type")
+	private String userType;
+	@Column(name="phone_number")
+	private String phoneNumber;
 	
 	public User() {
 		super();

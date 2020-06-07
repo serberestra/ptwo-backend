@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ptwo.app.model.Company;
 import com.ptwo.app.service.CompanyService;
 
 @RestController
+@RequestMapping("/api/company")
 public class CompanyController {
 	
 	@Autowired

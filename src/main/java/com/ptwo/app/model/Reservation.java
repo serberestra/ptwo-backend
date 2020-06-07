@@ -1,21 +1,28 @@
 package com.ptwo.app.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="sh_reservation")
 public class Reservation {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	Long id;
-	Long bookedBy;
+	private Long id;
+	@Column(name="booked_by")
+	private Long bookedBy;
 	@JoinColumn
-	Long workerId;
-	String date;
-	@Column(name="AVAILABLE")
-	Boolean status;
-	
+	@Column(name="worker_id")
+	private Long workerId;
+	@Column(name="reservation_date")
+	private String date;
+	private Boolean status;
 	
 	public Reservation() {
 		super();
@@ -26,7 +33,7 @@ public class Reservation {
 		this.id = id;
 		this.bookedBy = bookedBy;
 		this.workerId = workerId;
-		date = date;
+		this.date = date;
 		this.status = status;
 	}
 	public Long getId() {
