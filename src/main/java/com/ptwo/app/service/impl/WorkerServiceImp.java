@@ -1,6 +1,7 @@
 package com.ptwo.app.service.impl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +43,15 @@ public class WorkerServiceImp implements WorkerService {
 	@Override
 	public Worker getWorkerById(Long id) {
 		// TODO Auto-generated method stub
-		return workerDao.findById(id).get();
+		try {
+			return workerDao.findById(id).get();
+        } catch (NoSuchElementException e) {
+            // if there is no Company with this id, just return null
+            return null;
+        }
+
+		
+		
 	}
 
 	@Override

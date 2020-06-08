@@ -1,11 +1,13 @@
 package com.ptwo.app.service.impl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ptwo.app.dao.CompanyDao;
 import com.ptwo.app.model.Company;
@@ -18,6 +20,7 @@ public class CompanyServiceImpl implements CompanyService {
 	private CompanyDao companyDao;
 
 	@Override
+	@Transactional
 	public Company createCompany(Company company) {
 		// TODO Auto-generated method stub
 		return companyDao.save(company);
@@ -30,6 +33,7 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteCompany(Long id) {
 		// TODO Auto-generated method stub
 		companyDao.deleteById(id);
@@ -46,7 +50,7 @@ public class CompanyServiceImpl implements CompanyService {
 	public Company getCompanyById(Long id) {	
 		try {
             return companyDao.findById(id).get();
-        } catch (EmptyResultDataAccessException e) {
+        } catch (NoSuchElementException e) {
             // if there is no Company with this id, just return null
             return null;
         }

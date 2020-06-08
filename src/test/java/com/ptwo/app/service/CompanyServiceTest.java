@@ -45,10 +45,9 @@ public class CompanyServiceTest {
 		
         assertEquals(company1, company);
 
-//        companyService.deleteCompany(company.getId());
-//        Long id = company.getId();
-//        Company company3 = companyService.getCompanyById(id);
-//        assertNull(company3);
+        companyService.deleteCompany(company.getId());
+        company1 = companyService.getCompanyById(company.getId());
+        assertNull(company1);
 		
 	}
 
