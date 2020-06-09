@@ -1,5 +1,6 @@
 package com.ptwo.app.service.impl;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,12 +28,15 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void deleteByID(Long id) {
 		userDAO.deleteById(id);
-		
 	}
 
 	@Override
-	public User getUserById(Long id) {
-		return userDAO.findById(id).get();
+	public User getUserById(Long id) {	
+		try {
+			return userDAO.findById(id).get();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
 	}
 
 	@Override

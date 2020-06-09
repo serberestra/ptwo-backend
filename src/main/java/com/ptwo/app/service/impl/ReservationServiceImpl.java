@@ -1,6 +1,7 @@
 package com.ptwo.app.service.impl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,11 @@ public class ReservationServiceImpl implements ReservationService{
 
 	@Override
 	public Reservation getReservationById(Long id) {
-		return rdao.findById(id).get();
+		try {
+			return rdao.findById(id).get();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
 	}
 
 	@Override
