@@ -41,10 +41,6 @@ public class ReservationViewModelController {
 		return vmService.updateReservationViewModel(viewModel);
 	}
 
-//	@DeleteMapping("/reservation-view/{id}")
-//	public void deleteReservation(@PathVariable("id") Long id) {
-//		service.deleteReservation(id);
-//	}
 
 	@GetMapping("/reservation-views")
 	public List<ReservationViewModel> getAllReservationsViewModels() {
@@ -56,6 +52,32 @@ public class ReservationViewModelController {
 		return vmService.getReservationViewModel(reservationId);
 	}
 
+	/*
+	 * This method gets all reservationViewModel by CompanyId
+	 * URL pattern: http://localhost:9191/api/reservations-view/company/5002
+	 */
+	@GetMapping("/reservations-view/company/{id}")
+	public List<ReservationViewModel> getReservationsByCompany(@PathVariable("id") Long companyId) {
+		return vmService.getReservationViewModelByCompany(companyId);
+	}
+	
+
+	/*
+	 * This method gets all reservationViewModel by UserId
+	 * URL pattern: http://localhost:9191/api/reservations-view/user/1070
+	 */
+	@GetMapping("/reservations-view/user/{id}")
+	public List<ReservationViewModel> getReservationsByUserId(@PathVariable("id") Long userId) {
+		return vmService.getReservationViewModelByUserId(userId);
+	}	
+
+
+//	@DeleteMapping("/reservation-view/{id}")
+//	public void deleteReservation(@PathVariable("id") Long id) {
+//		service.deleteReservation(id);
+//	}
+
+	
 //	@GetMapping("/reservations-view/worker/{id}")
 //	public List<Reservation> getReservationsByWorker(@PathVariable("id") Long wID) {
 //		return service.getReservationsByWorker(wID);
@@ -66,10 +88,6 @@ public class ReservationViewModelController {
 //		return service.getReservationsByDate(date);
 //	}
 
-//	@GetMapping("/reservations-view/worker/{id}")
-//	public List<Reservation> getReservationsByCompany(@PathVariable("id") Long wID) {
-//		return service.getReservationsByWorker(wID);
-	
-	
 
+	
 }

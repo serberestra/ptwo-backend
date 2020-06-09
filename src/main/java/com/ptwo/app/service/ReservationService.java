@@ -13,4 +13,5 @@ public interface ReservationService {
 	public Reservation getReservationById(Long id);
 	public List<Reservation> getReservationsByWorker(Long wID);
 	public List<Reservation> getReservationsByDate(Date date);
+	
 }

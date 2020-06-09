@@ -133,6 +133,40 @@ public class ReservationViewModelServiceImpl {
 
 	}
 	
+
+	public List<ReservationViewModel> getReservationViewModelByCompany(Long companyId){
+        List<Reservation> reservationList = reservationService.getAllReservations();
+
+        List<ReservationViewModel> rvmList = new ArrayList<>();
+
+        ReservationViewModel rvm = new ReservationViewModel();
+        
+        for (Reservation reservation : reservationList) {
+            rvm = buildReservationViewModel(reservation);
+            if (rvm.getCompanyId().equals(companyId)) {
+            	rvmList.add(rvm);
+            } 
+        }
+        return rvmList;
+	}
+
+
+	public List<ReservationViewModel> getReservationViewModelByUserId(Long userId){
+        List<Reservation> reservationList = reservationService.getAllReservations();
+
+        List<ReservationViewModel> rvmList = new ArrayList<>();
+
+        ReservationViewModel rvm = new ReservationViewModel();
+        
+        for (Reservation reservation : reservationList) {
+            rvm = buildReservationViewModel(reservation);
+            if ( (rvm.getUserId() != null) && (rvm.getUserId().equals(userId))) {
+            	rvmList.add(rvm);
+            } 
+        }
+        return rvmList;
+	}
+
 	
 	@Transactional
 	public ReservationViewModel updateReservationViewModel(ReservationViewModel viewModel) throws Exception{
@@ -149,31 +183,6 @@ public class ReservationViewModelServiceImpl {
 			reservation.setId(viewModel.getReservationId());
 			reservationService.updateReservation(reservation);
 		}
-		
-		/*
-		Worker worker = new Worker();
-		worker.setFirstName(viewModel.getFirstName());
-		worker.setLastName(viewModel.getLastName());
-		worker.setServiceName(viewModel.getService());
-		worker.setCompanyId(viewModel.getCompanyId());
-		if (viewModel.getWorkerId() == null) {
-			workerService.createWorker(worker);
-		} else {
-			worker.setId(viewModel.getWorkerId());
-			workerService.updateWorker(worker);
-		}
-		
-		Company company = new Company();
-		company.setName(viewModel.getCompanyName());
-		company.setAddress(viewModel.getCompanyAddress());
-		company.setPhoneNumber(viewModel.getContact());
-		if (viewModel.getCompanyId() == null) {
-			companyService.createCompany(company);
-		} else {
-			company.setId(viewModel.getCompanyId());
-			companyService.updateCompany(company);
-		}
-		*/
 		
 		return buildReservationViewModel(reservation);
 	}
