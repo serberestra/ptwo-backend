@@ -16,7 +16,7 @@ import com.ptwo.app.model.Company;
 import com.ptwo.app.service.CompanyService;
 
 @RestController
-@RequestMapping("/api/company")
+@RequestMapping("/api")
 public class CompanyController {
 	
 	@Autowired
@@ -41,7 +41,7 @@ public class CompanyController {
 		
 	}
 
-	@GetMapping("/company")
+	@GetMapping("/companies")
 	public List<Company> getAllCompany() {
 		// TODO Auto-generated method stub
 		return service.getAllCompany();

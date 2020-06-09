@@ -18,43 +18,43 @@ import com.ptwo.app.service.ReservationService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/reservation")
+@RequestMapping("/api")
 public class ReservationController {
 
 	@Autowired
 	private ReservationService service;
 	
-	@PostMapping("/create")
+	@PostMapping("/reservation")
 	public Reservation createReservation(@RequestBody Reservation r) {
 		return service.createReservation(r);
 	}
 
-	@PutMapping("/update")
+	@PutMapping("/reservation")
 	public Reservation updateReservation(Reservation r) {
 		return service.updateReservation(r);
 	}
 
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/reservation/{id}")
 	public void deleteReservation(@PathVariable("id") Long id) {
 		service.deleteReservation(id);
 	}
 
-	@GetMapping("/list")
+	@GetMapping("/resevations")
 	public List<Reservation> getAllReservations() {
 		return service.getAllReservations();
 	}
 
-	@GetMapping("/list/{id}")
+	@GetMapping("/reservation/{id}")
 	public Reservation getReservationById(@PathVariable("id") Long id) {
 		return service.getReservationById(id);
 	}
 
-	@GetMapping("/list/filterByWorker/{id}")
+	@GetMapping("/reservations/worker/{id}")
 	public List<Reservation> getReservationsByWorker(@PathVariable("id") Long wID) {
 		return service.getReservationsByWorker(wID);
 	}
 	
-	@GetMapping("/list/filterByDate/{date}")
+	@GetMapping("/reservations/date/{date}")
 	public List<Reservation> getReservationsByDate(@PathVariable("date") String date) {
 		return service.getReservationsByDate(date);
 	}

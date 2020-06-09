@@ -17,39 +17,39 @@ import com.ptwo.app.service.UserService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api")
 public class UserController {
 
 	@Autowired
 	private UserService service;
 	
-	@PostMapping("/register")
+	@PostMapping("/user")
 	public User createUser(@RequestBody User u) {
 		return service.createUser(u);
 	}
 
-	@PutMapping("/update")
+	@PutMapping("/user")
 	public User updateUser(@RequestBody User u) {
 		return service.updateUser(u);
 	}
 
-	@DeleteMapping("delete/{id}")
+	@DeleteMapping("user/{id}")
 	public void deleteByID(@PathVariable("id")Long id) {
 		service.deleteByID(id);
 		
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("user/{id}")
 	public User getUserById(@PathVariable("id")Long id) {
 		return service.getUserById(id);
 	}
 	
-	@GetMapping("/all")
+	@GetMapping("/users")
 	public List<User> getAllUsers() {
 		return service.getAllUsers();
 	}
 
-	@GetMapping("/name/{username}")
+	@GetMapping("/user/{username}")
 	public User getUserByName(@PathVariable("username")String Username) {
 		return service.getUserByName(Username);
 	}

@@ -16,7 +16,7 @@ import com.ptwo.app.model.Worker;
 import com.ptwo.app.service.WorkerService;
 
 @RestController
-@RequestMapping("/api/worker")
+@RequestMapping("/api")
 public class WorkerController {
 	
 	@Autowired
@@ -38,7 +38,7 @@ public class WorkerController {
 		
 	}
 
-	@GetMapping("/worker")
+	@GetMapping("/workers")
 	public List<Worker> getAllWorker() {
 		return service.getAllWorker();
 	}
@@ -48,7 +48,7 @@ public class WorkerController {
 		return service.getWorkerById(id);
 	}
 	
-	@GetMapping("/worker/company/{companyId}")
+	@GetMapping("/workers/company/{companyId}")
 	public List<Worker> getWorkersByCompanyId(@PathVariable Long companyId){
 		return service.getWorkersByCompanyId(companyId);
 	}

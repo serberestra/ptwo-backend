@@ -49,8 +49,6 @@ public class WorkerServiceImp implements WorkerService {
             // if there is no Company with this id, just return null
             return null;
         }
-
-		
 		
 	}
 
