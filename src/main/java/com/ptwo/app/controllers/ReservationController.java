@@ -1,5 +1,6 @@
 package com.ptwo.app.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class ReservationController {
 		service.deleteReservation(id);
 	}
 
-	@GetMapping("/resevations")
+	@GetMapping("/reservations")
 	public List<Reservation> getAllReservations() {
 		return service.getAllReservations();
 	}
@@ -55,7 +56,7 @@ public class ReservationController {
 	}
 	
 	@GetMapping("/reservations/date/{date}")
-	public List<Reservation> getReservationsByDate(@PathVariable("date") String date) {
+	public List<Reservation> getReservationsByDate(@PathVariable("date") Date date) {
 		return service.getReservationsByDate(date);
 	}
 

@@ -1,5 +1,6 @@
 package com.ptwo.app.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -51,7 +52,7 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 
 	@Override
-	public List<Reservation> getReservationsByDate(String date) {
+	public List<Reservation> getReservationsByDate(Date date) {
 		return rdao.findByDate(date);
 	}
 
