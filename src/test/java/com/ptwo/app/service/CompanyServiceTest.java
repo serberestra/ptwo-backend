@@ -1,35 +1,33 @@
 package com.ptwo.app.service;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ptwo.app.dao.CompanyDao;
 import com.ptwo.app.model.Company;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class CompanyServiceTest {
 	
 	@Autowired
-	CompanyService companyService;
+	private CompanyService companyService;
 	
-    @Before
-    public void setUp() throws Exception {
-        // Clean up the test db
-        List<Company> cList = companyService.getAllCompany();
-        for (Company c : cList) {
-            companyService.deleteCompany(c.getId());
-        }
-
+    @BeforeAll
+    static void setUp() throws Exception {
+    	System.out.println("Testing Company Services.");
     }
+    
+    @Test
+	public void contextLoads() throws Exception {
+		assertThat(companyService).isNotNull();
+	}
 	
 	@Test
 	public void testCreateGetCompany() {
@@ -47,7 +45,7 @@ public class CompanyServiceTest {
 
         companyService.deleteCompany(company.getId());
         company1 = companyService.getCompanyById(company.getId());
-        assertNull(company1);
+        assertThat(company1).isNull();
 		
 	}
 
@@ -79,28 +77,21 @@ public class CompanyServiceTest {
 		company.setPhoneNumber("(565)345");
         companyService.createCompany(company);
 
-        company = new Company();
-		company.setName("Buy More");
-		company.setAddress("300 Bronze St");
-		company.setPhoneNumber("(777)235");
-        companyService.createCompany(company);
-
-        //assertEquals(2, cList.size());
-
         // Delete "Buy More";
         companyService.deleteCompany(company.getId());
-
-        List<Company> cList = companyService.getAllCompany();
-
-        assertEquals(1, cList.size());
         
-//        Company company1 = companyService.getCompanyById(company.getId());
-//        assertNull(company1); 
-        
+        Company company1 = companyService.getCompanyById(company.getId());
+        assertThat(company1).isNull(); 
 	}
 
 	@Test
 	public void testGetAllCompany() {
+		
+		List<Company> cList = companyService.getAllCompany();
+        for (Company c : cList) {
+        	companyService.deleteCompany(c.getId());
+        }
+		
         Company company = new Company();
 		company.setName("XYZ Electronics");
 		company.setAddress("150 Silver St");
@@ -113,8 +104,7 @@ public class CompanyServiceTest {
 		company.setPhoneNumber("(777)235");
         companyService.createCompany(company);
 
-        List<Company> cList = companyService.getAllCompany();
-
+        cList = companyService.getAllCompany();
         assertEquals(2, cList.size());
 	}
 

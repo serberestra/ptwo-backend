@@ -1,34 +1,30 @@
 package com.ptwo.app.service;
 
-import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ptwo.app.model.Worker;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class WorkerServiceTest {
 
 	@Autowired
 	WorkerService workerService;
 	
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
-        // Clean up the test db
-        List<Worker> wList = workerService.getAllWorker();
+    	// Cleaning the worker table before running the test.
+		List<Worker> wList = workerService.getAllWorker();
         for (Worker w : wList) {
             workerService.deleteWorker(w.getId());
         }
-
     }
 
 	@Test
@@ -47,7 +43,7 @@ public class WorkerServiceTest {
 
         workerService.deleteWorker(worker.getId());
         worker1 = workerService.getWorkerById(worker.getId());
-        assertNull(worker1);
+        assertThat(worker1).isNull();
 	}
 
 	@Test
@@ -72,6 +68,7 @@ public class WorkerServiceTest {
 
 	@Test
 	public void testGetAllWorkers() {
+		
         Worker worker = new Worker();
 		worker.setFirstName("Daisy");
 		worker.setLastName("Green");
@@ -88,14 +85,13 @@ public class WorkerServiceTest {
 
         workerService.createWorker(worker);
 
-        List<Worker> cList = workerService.getAllWorker();
+        List<Worker> wList = workerService.getAllWorker();
 
-        assertEquals(2, cList.size());
+        assertEquals(2, wList.size());
 	}
 
 	@Test
 	public void testGetWorkersByCompanyId() {
-		
 		
         Worker worker = new Worker();
 		worker.setFirstName("Daisy");
