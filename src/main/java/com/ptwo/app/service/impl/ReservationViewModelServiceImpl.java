@@ -151,6 +151,10 @@ public class ReservationViewModelServiceImpl {
 	}
 
 
+	/*
+	 * This method gets all reservation by UserId
+	 * URL pattern: http://localhost:9191/api/reservations-view/user/1070
+	 */
 	public List<ReservationViewModel> getReservationViewModelByUserId(Long userId){
         List<Reservation> reservationList = reservationService.getAllReservations();
 
