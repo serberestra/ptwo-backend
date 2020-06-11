@@ -2,11 +2,8 @@ package com.ptwo.app.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
-
-import javax.persistence.Column;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,12 +47,9 @@ class UserServiceTest {
 		
 		userService.createUser(user);
 		
-		
 		List<User> uList = userService.getAllUsers();
 
-		
 		assertEquals(1, uList.size());
-		
 		
 	}
 	
@@ -150,25 +144,14 @@ class UserServiceTest {
 		user.setUserType("user");
 		user.setPhoneNumber("1231231234");
 		
-		userService.createUser(user);
+		User user1 = userService.createUser(user);
 		
-		User user1 = new User();
-		user1.setId(2L);
-		user1.setUsername("user1");
-		user1.setPassword("user1");
-		user1.setUserType("user1");
-		user1.setPhoneNumber("1231231235");
-		userService.createUser(user1);
-		
-//		User user1 = userService.getUserById(user.getId());
-		//assertEquals(user1, user);
-		
-		userService.deleteByID(1L);
-		List<User> uList = userService.getAllUsers();
+		userService.deleteByID(user1.getId());
+		user = userService.getUserById(user.getId());
 
 		//System.out.println("this is: userService.getUserById(user.getId(): \n\n" + userService.getUserById(user.getId()));
 		
-		assertEquals(1, uList.size());
+		assertThat(user).isNull();
 		
 		
 	}
