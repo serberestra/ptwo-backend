@@ -10,10 +10,10 @@ insert into sh_user(id, username, password, user_type, phone_number) values(1080
 insert into sh_user(id, username, password, user_type, phone_number) values(1090, 'nadel@microsoft.com', 'nadel', 'user', '4-4444');
 insert into sh_user(id, username, password, user_type, phone_number) values(1100, 'Buy More', 'buymore', 'company', '5-5555');
 
-insert into sh_company(id, name, phone_number, address) values(5001, 'ABC Pressure Gutter', '(808)123', '120 Ruby St.');
-insert into sh_company(id, name, phone_number, address) values(5002, 'XYZ Electronics', '(565)345', '150 Silver St.');
-insert into sh_company(id, name, phone_number, address) values(5003, '123 Barber Shop', '(978)535', '123 Springfield');
-insert into sh_company(id, name, phone_number, address) values(5004, 'Buy More', '(777)235', '300 Bronze St');
+insert into sh_company(id, name, phone_number, address, user_id) values(5001, 'ABC Pressure Gutter', '(808)123', '120 Ruby St.', 1030);
+insert into sh_company(id, name, phone_number, address, user_id) values(5002, 'XYZ Electronics', '(565)345', '150 Silver St.', 1040);
+insert into sh_company(id, name, phone_number, address, user_id) values(5003, '123 Barber Shop', '(978)535', '123 Springfield', 1050);
+insert into sh_company(id, name, phone_number, address, user_id) values(5004, 'Buy More', '(777)235', '300 Bronze St', 1020);
 
 insert into sh_worker(id, first_name, last_name, company_id, service_name) values(1001,'Rich', 'Black', 5001, 'Gutter Clean');	
 insert into sh_worker(id, first_name, last_name, company_id, service_name) values(1002,'Michael', 'Jackson', 5002, 'Appliance Installation');	

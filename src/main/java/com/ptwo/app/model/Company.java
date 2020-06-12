@@ -4,8 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -27,18 +30,34 @@ public class Company {
 
     @Column(name = "address", nullable = false)
     private String address;
-
+    
+//    @OneToMany(mappedBy="company")
+//    private List<Worker> workers = new ArrayList<Worker>();
+    
+    @Column(name="user_id")
+    private Long userId;
+    
     public Company() {
     }
-
     
-    public Company(Long id, String name, String phoneNumber, String address) {
+ 
+public Company(Long id, String name, String phoneNumber, String address, Long userId) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
+		this.userId = userId;
 	}
+
+
+//	public List<Worker> getWorkers() {
+//		return workers;
+//	}
+//
+//	public void setWorkerList(List<Worker> workers) {
+//		this.workers = workers;
+//	}
 
 	public Long getId() {
         return id;
@@ -72,16 +91,19 @@ public class Company {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "Company{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
-                '}';
-    }
+	public Long getUserId() {
+		return userId;
+	}
 
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	@Override
+	public String toString() {
+		return "Company [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", address=" + address
+				+ ", userId=" + userId + "]";
+	}
 
 	@Override
 	public int hashCode() {
@@ -91,9 +113,9 @@ public class Company {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -124,10 +146,14 @@ public class Company {
 				return false;
 		} else if (!phoneNumber.equals(other.phoneNumber))
 			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
+			return false;
 		return true;
 	}
-    
-    
+
     
 
 }

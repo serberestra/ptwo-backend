@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import java.util.Objects;
@@ -26,7 +28,11 @@ public class Worker {
 	private Long companyId;
 
 	private String serviceName;
-
+	
+//	@ManyToOne
+//	@JoinColumn(name="company_id", referencedColumnName="id")
+//	private Company company;
+	
 	public Worker() {
 	}
 
@@ -40,6 +46,13 @@ public class Worker {
 	}
 
 
+//	public Company getCompany() {
+//		return company;
+//	}
+//
+//	public void setCompany(Company company) {
+//		this.company = company;
+//	}
 
 	public Long getId() {
 		return id;
