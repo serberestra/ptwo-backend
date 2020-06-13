@@ -26,17 +26,20 @@ public class Worker {
 	private Long companyId;
 
 	private String serviceName;
+	
+	private Boolean available;
 
 	public Worker() {
 	}
 
-	public Worker(Long id, String firstName, String lastName, Long companyId, String serviceName) {
+	public Worker(Long id, String firstName, String lastName, Long companyId, String serviceName, Boolean available) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.companyId = companyId;
 		this.serviceName = serviceName;
+		this.available = available;
 	}
 
 
@@ -81,32 +84,76 @@ public class Worker {
 		this.serviceName = serviceName;
 	}
 
-	@Override
-	public String toString() {
-		return "Worker{" +
-				"id=" + id +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", companyId=" + companyId +
-				", serviceName='" + serviceName + '\'' +
-				'}';
+
+	public Boolean getAvailable() {
+		return available;
 	}
 
+	public void setAvailable(Boolean available) {
+		this.available = available;
+	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Worker worker = (Worker) o;
-		return getId().equals(worker.getId()) &&
-				getFirstName().equals(worker.getFirstName()) &&
-				getLastName().equals(worker.getLastName()) &&
-				getCompanyId().equals(worker.getCompanyId()) &&
-				getServiceName().equals(worker.getServiceName());
+	public String toString() {
+		return "Worker [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", companyId=" + companyId
+				+ ", serviceName=" + serviceName + ", available=" + available + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getId(), getFirstName(), getLastName(), getCompanyId(), getServiceName());
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((available == null) ? 0 : available.hashCode());
+		result = prime * result + ((companyId == null) ? 0 : companyId.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((serviceName == null) ? 0 : serviceName.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Worker other = (Worker) obj;
+		if (available == null) {
+			if (other.available != null)
+				return false;
+		} else if (!available.equals(other.available))
+			return false;
+		if (companyId == null) {
+			if (other.companyId != null)
+				return false;
+		} else if (!companyId.equals(other.companyId))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (serviceName == null) {
+			if (other.serviceName != null)
+				return false;
+		} else if (!serviceName.equals(other.serviceName))
+			return false;
+		return true;
+	}
+	
+	
+
 }

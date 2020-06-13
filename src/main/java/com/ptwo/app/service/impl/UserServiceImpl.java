@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.ptwo.app.dao.UserDAO;
@@ -17,7 +18,11 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User createUser(User u) {
-		return userDAO.save(u);
+		try {
+			return userDAO.save(u);
+		} catch (DataIntegrityViolationException e) {
+			return null;
+		}
 	}
 
 	@Override
