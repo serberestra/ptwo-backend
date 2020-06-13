@@ -11,5 +11,6 @@ public interface CompanyService {
 	public void deleteCompany(Long id);
 	public List<Company> getAllCompany();
 	public Company getCompanyById(Long id);
+	public Company getCompanyByUserId(Long id);
 
 }

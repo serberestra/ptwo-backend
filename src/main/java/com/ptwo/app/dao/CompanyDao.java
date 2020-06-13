@@ -8,5 +8,5 @@ import com.ptwo.app.model.Company;
 
 @Repository
 public interface CompanyDao extends JpaRepository<Company, Long> {
-
+	public Company findByUserId(Long id);
 }

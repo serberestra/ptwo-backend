@@ -56,5 +56,16 @@ public class CompanyServiceImpl implements CompanyService {
         }
 	}
 
+	@Override
+	public Company getCompanyByUserId(Long id) {
+		// TODO Auto-generated method stub
+		try {
+			return companyDao.findByUserId(id);
+		}catch (NoSuchElementException e) {
+			return null;	
+		}
+	}
+	
+
 
 }

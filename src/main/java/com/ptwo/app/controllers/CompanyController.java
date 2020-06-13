@@ -54,6 +54,9 @@ public class CompanyController {
 		// TODO Auto-generated method stub
 		return service.getCompanyById(id);
 	}
-
+	@GetMapping("/company/user/{id}")
+	public Company getCompanyByUid(@PathVariable Long id) {
+		return service.getCompanyByUserId(id);
+	}
 
 }
