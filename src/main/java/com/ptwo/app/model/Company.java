@@ -3,8 +3,10 @@ package com.ptwo.app.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import java.util.ArrayList;
@@ -13,10 +15,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name="sh_company")
+@SequenceGenerator(name="company_seq", initialValue=5101, allocationSize=100)
 public class Company {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="company_seq")
     private Long id;
 
     @Column(name = "name")

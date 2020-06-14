@@ -27,7 +27,11 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User updateUser(User u) {
-		return userDAO.save(u);
+		try {
+			return userDAO.save(u);
+		} catch (DataIntegrityViolationException e) {
+			return null;
+		}
 	}
 
 	@Override

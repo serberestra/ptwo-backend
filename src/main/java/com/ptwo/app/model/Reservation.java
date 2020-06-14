@@ -8,14 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="sh_reservation")
+@SequenceGenerator(name="reservation_seq", initialValue=501, allocationSize=100)
 public class Reservation {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="reservation_seq")
 	private Long id;
 	@Column(name="booked_by")
 	private Long bookedBy;

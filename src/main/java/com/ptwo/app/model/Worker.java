@@ -3,17 +3,20 @@ package com.ptwo.app.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import java.util.Objects;
 
 @Entity
 @Table(name="sh_worker")
+@SequenceGenerator(name="worker_seq", initialValue=1101, allocationSize=100)
 public class Worker {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="worker_seq")
 	private Long id;
 
 	@Column(name = "first_name", nullable = false)

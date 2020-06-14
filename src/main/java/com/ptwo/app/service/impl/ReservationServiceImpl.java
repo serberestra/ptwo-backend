@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.ptwo.app.dao.ReservationDAO;
@@ -19,12 +20,20 @@ public class ReservationServiceImpl implements ReservationService{
 	
 	@Override
 	public Reservation createReservation(Reservation r) {
-		return rdao.save(r);
+		try {
+			return rdao.save(r);
+		} catch (DataIntegrityViolationException e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Reservation updateReservation(Reservation r) {
-		return rdao.save(r);
+		try {
+			return rdao.save(r);
+		} catch (DataIntegrityViolationException e) {
+			return null;
+		}
 	}
 
 	@Override

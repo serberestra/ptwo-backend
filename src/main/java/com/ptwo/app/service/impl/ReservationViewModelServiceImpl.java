@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.ptwo.app.dao.CompanyDao;
@@ -85,12 +86,17 @@ public class ReservationViewModelServiceImpl {
 		worker.setLastName(viewModel.getLastName());
 		worker.setServiceName(viewModel.getService());
 		worker.setCompanyId(viewModel.getCompanyId());
+	
 		if (viewModel.getWorkerId() == null) {
-			workerService.createWorker(worker);
+			worker = workerService.createWorker(worker);
 		} else {
 			worker.setId(viewModel.getWorkerId());
-			workerService.updateWorker(worker);
+			worker = workerService.updateWorker(worker);
 		}
+		
+//		if (worker == null) {
+//			return null;
+//		}
 		
 		Company company = new Company();
 		company.setName(viewModel.getCompanyName());
@@ -102,9 +108,9 @@ public class ReservationViewModelServiceImpl {
 			company.setId(viewModel.getCompanyId());
 			companyService.updateCompany(company);
 		}
-		
-		
+					
 		return buildReservationViewModel(reservation);
+		
 	}
 	
 
@@ -171,20 +177,26 @@ public class ReservationViewModelServiceImpl {
 	@Transactional
 	public ReservationViewModel updateReservationViewModel(ReservationViewModel viewModel) throws Exception{
 
-		Reservation reservation = new Reservation();
 		
-		reservation.setDate(viewModel.getReservationDate());
-		reservation.setStatus(viewModel.getStatus());
-		reservation.setBookedBy(viewModel.getUserId());
-		reservation.setWorkerId(viewModel.getWorkerId());
-		if (viewModel.getReservationId() == null) {
-			reservation = reservationService.createReservation(reservation);
-		} else {
-			reservation.setId(viewModel.getReservationId());
-			reservationService.updateReservation(reservation);
+		try {		
+			Reservation reservation = new Reservation();
+			
+			reservation.setDate(viewModel.getReservationDate());
+			reservation.setStatus(viewModel.getStatus());
+			reservation.setBookedBy(viewModel.getUserId());
+			reservation.setWorkerId(viewModel.getWorkerId());
+			if (viewModel.getReservationId() == null) {
+				reservation = reservationService.createReservation(reservation);
+			} else {
+				reservation.setId(viewModel.getReservationId());
+				reservationService.updateReservation(reservation);
+			}
+			return buildReservationViewModel(reservation);
+		
+		} catch (DataIntegrityViolationException e) {
+			return null;
 		}
-		
-		return buildReservationViewModel(reservation);
+
 	}
 
 	

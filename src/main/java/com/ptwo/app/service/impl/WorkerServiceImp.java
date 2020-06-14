@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.ptwo.app.dao.WorkerDao;
@@ -18,14 +19,21 @@ public class WorkerServiceImp implements WorkerService {
 
 	@Override
 	public Worker createWorker(Worker worker) {
-		// TODO Auto-generated method stub
-		return workerDao.save(worker);
+		try {
+			return workerDao.save(worker);
+		} catch (DataIntegrityViolationException e) {
+			return null;
+		}
+
 	}
 
 	@Override
 	public Worker updateWorker(Worker worker) {
-		// TODO Auto-generated method stub
-		return workerDao.save(worker);
+		try {
+			return workerDao.save(worker);
+		} catch (DataIntegrityViolationException e) {
+			return null;
+		}
 	}
 
 	@Override

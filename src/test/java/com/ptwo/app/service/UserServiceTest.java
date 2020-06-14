@@ -125,16 +125,16 @@ class UserServiceTest {
 	public void test_getUsersById() {
 		
 		User user = new User();
-		user.setId(1L);
+		//user.setId(1L);
 		user.setUsername("any");
 		user.setPassword("any");
 		user.setUserType("user");
 		user.setPhoneNumber("1231231234");
 		
-		userService.createUser(user);
+		user = userService.createUser(user);
 		
 		User user1 = new User();
-		user1.setId(2L);
+		//user1.setId(2L);
 		user1.setUsername("user1");
 		user1.setPassword("user1");
 		user1.setUserType("user1");
@@ -142,9 +142,9 @@ class UserServiceTest {
 		userService.createUser(user1);
 		
 		//List<User> uList = userService.getAllUsers();
-		User test1 = userService.getUserById(2L);
+		User test1 = userService.getUserById(user.getId());
 
-		assertEquals(user1.getId(), test1.getId() );
+		assertEquals(user.getId(), test1.getId() );
 		
 		
 	}
