@@ -66,7 +66,7 @@ class ReservationServiceTest {
 		private Date date;
 		private Boolean status;
 		 */
-	    //SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+	    // SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
 	    Date date = new Date(); 
 		
 		Reservation r = new Reservation();
@@ -76,28 +76,13 @@ class ReservationServiceTest {
 		r.setDate(date);
 		r.setStatus(true);
 				
-		reservationService.createReservation(r);
+		Reservation r2 = reservationService.createReservation(r);
 		
-		Reservation r2 = new Reservation();
-		r2.setId(2L);
-		r2.setBookedBy(2L);
-		r2.setWorkerId(2L);
-		r2.setDate(date);
-		r2.setStatus(true);
-				
-		reservationService.createReservation(r2);
-		
-		reservationService.deleteReservation(r.getId());  //.................... DELETE r 
+		reservationService.deleteReservation(r2.getId()); 
 		
 		// instantiate upon the existence of r's id
-		Reservation r3 = reservationService.getReservationById(r.getWorkerId());  // check for r
+		Reservation r3 = reservationService.getReservationById(r.getWorkerId());  
 		
-		
-		/**
-		 * here, I was having so much problem checking for null and whatnot, 
-		 * I was thinking to add Two to the list and delte One of them...
-		 * ... then check size of list which should be ONE, and that was not working out either?
-		 */
 		//List<Reservation> rList = reservationService.getAllReservations();
 		//System.out.println("\n\n" + rList.size());
 		//rList.add(reservationService.getReservationById(1L));
