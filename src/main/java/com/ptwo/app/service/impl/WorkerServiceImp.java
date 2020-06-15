@@ -1,13 +1,17 @@
 package com.ptwo.app.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
 
+import com.ptwo.app.dao.ReservationDAO;
 import com.ptwo.app.dao.WorkerDao;
+import com.ptwo.app.model.Reservation;
 import com.ptwo.app.model.Worker;
 import com.ptwo.app.service.WorkerService;
 
@@ -15,7 +19,11 @@ import com.ptwo.app.service.WorkerService;
 public class WorkerServiceImp implements WorkerService {
 	
 	@Autowired
-	WorkerDao workerDao;
+	private WorkerDao workerDao;
+	
+	@Autowired
+	private ReservationDAO rdao;
+
 
 	@Override
 	public Worker createWorker(Worker worker) {
@@ -38,8 +46,14 @@ public class WorkerServiceImp implements WorkerService {
 
 	@Override
 	public void deleteWorker(Long id) {
-		// TODO Auto-generated method stub
+				
+		List<Reservation> rList = new ArrayList<>();
+		rList = rdao.findByWorkerId(id);
+		for (Reservation reservation: rList) {
+			rdao.deleteById(reservation.getId());
+		}		
 		workerDao.deleteById(id);
+		
 	}
 
 	@Override
