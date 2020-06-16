@@ -199,7 +199,12 @@ public class ReservationViewModelServiceImpl {
 
 	}
 
-	
+	@Transactional
+	public void deleteReservationViewModel(Long reservationId){
+		reservationService.deleteReservation(reservationId);
+
+	}
+
 	
     /* Helper Methods
      * This method will populate the ServiceRowViewModel based on  

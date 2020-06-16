@@ -72,10 +72,10 @@ public class ReservationViewModelController {
 	}	
 
 
-//	@DeleteMapping("/reservation-view/{id}")
-//	public void deleteReservation(@PathVariable("id") Long id) {
-//		service.deleteReservation(id);
-//	}
+	@DeleteMapping("/reservation-view/{id}")
+	public void deleteReservation(@PathVariable("id") Long id) {
+		vmService.deleteReservationViewModel(id);
+	}
 
 	
 //	@GetMapping("/reservations-view/worker/{id}")
